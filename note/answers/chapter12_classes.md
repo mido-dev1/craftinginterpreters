@@ -140,7 +140,8 @@
       List<Token> parameters = null;
 
       // Allow omitting the parameter list entirely in method getters.
-      if (!kind.equals("method") || check(LEFT_PAREN)) {
+      // But not the constructor.
+      if (!kind.equals("method") || check(LEFT_PAREN) || name.equals("init")) {
         consume(LEFT_PAREN, "Expect '(' after " + kind + " name.");
         parameters = new ArrayList<>();
         if (!check(RIGHT_PAREN)) {
